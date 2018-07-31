@@ -63,8 +63,21 @@ const USERS = [
 //  3. looks for a user object matching the sent username and password values
 //  4. if matching user found, add the user object to the request object
 //     (aka, `req.user = matchedUser`)
+
+
 function gateKeeper(req, res, next) {
   // your code should replace the line below
+  const {user, pass} = queryString.parse(req.get('x-username-and-password'));
+  const entry = USERS.find( function(user) {
+        if (user.userName = user && user.passWord == pass)
+          return true;
+    
+        return false;  
+  });
+  
+  if (entry != null) 
+    req.user = entry;
+  
   next();
 }
 
